@@ -1,0 +1,92 @@
+def parse_int(string):
+    """
+    Gets number represented as string, returns number represented as int.
+
+    Accepts number smaller then 1 000 000.
+    """
+
+    numbers = {
+        'one': '1',
+        'two': '2',
+        'three': '3',
+        'four': '4',
+        'five': '5',
+        'six': '6',
+        'seven': '7',
+        'eiight': '8',
+        'nine': '9',
+        'ten': '10',
+        'twenty': '20',
+        'thirty': '30',
+        'fourty': '40',
+        'fifty': '50',
+        'sixty': '60',
+        'seventy': '70',
+        'eighty': '80',
+        'ninety': '90',
+        'hundred': '100',
+        'thousand': '1000'
+    }
+
+    # Prepare list
+    new_string = string.replace('-', ' ')
+    print(new_string)
+    
+    string_to_list = new_string.split(' ')
+    string_without_and = []
+    for word in string_to_list:
+        if word != 'and':
+            string_without_and.append(word)
+    
+    # Replace words
+    temp_result = []
+    for word in string_without_and:
+        for key, value in numbers.items():
+            if word == key:
+                temp_result.append(int(value))
+
+    # Eliminate extras
+    result = 0
+    while len(temp_result) > 0:
+        if len(temp_result) == 1:
+            result += temp_result[0]
+            temp_result.remove(temp_result[0])
+        elif len(temp_result) == 2:
+            result += temp_result[0]
+            temp_result.remove(temp_result[0])
+        elif len(temp_result) == 3:
+            result += temp_result[0]
+            temp_result.remove(temp_result[0])
+        elif len(temp_result) == 4:
+            result += temp_result[0] * temp_result[1]
+            temp_result.remove(temp_result[0])
+            temp_result.remove(temp_result[0])
+        elif len(temp_result) == 5:
+            if temp_result[0] != 1000:
+                result += (temp_result[0] + temp_result[1]) * temp_result[2]
+                temp_result.remove(temp_result[0])
+                temp_result.remove(temp_result[0])
+                temp_result.remove(temp_result[0])
+            else:
+                result += temp_result[0]
+                temp_result.remove(temp_result[0])
+        elif len(temp_result) == 6:
+            result += temp_result[0] * temp_result[1]
+            temp_result.remove(temp_result[0])
+            temp_result.remove(temp_result[0])
+        elif len(temp_result) == 7:
+            result += (temp_result[0] + temp_result[1]) * temp_result[2]
+            temp_result.remove(temp_result[0])
+            temp_result.remove(temp_result[0])
+            temp_result.remove(temp_result[0])
+        elif len(temp_result) == 8:
+            result += temp_result[0] * temp_result[3]
+            temp_result.remove(temp_result[0])
+        elif len(temp_result) == 9:
+            result += temp_result[0] * temp_result[1] * temp_result[4]
+            temp_result.remove(temp_result[0])
+            temp_result.remove(temp_result[0])
+    return result
+
+
+print(parse_int(' nine hundred eighty-six thousand five hundred twenty-four'))
