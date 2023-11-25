@@ -2,7 +2,7 @@ def parse_int(string):
     """
     Gets number represented as string, returns number represented as int.
 
-    Accepts number smaller then 1 000 000.
+    Accepts number smaller then 1 000 000 .
     """
 
     numbers = {
